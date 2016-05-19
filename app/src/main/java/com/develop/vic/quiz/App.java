@@ -5,7 +5,8 @@ import android.support.annotation.VisibleForTesting;
 
 import com.develop.vic.quiz.components.AppComponent;
 import com.develop.vic.quiz.components.ApplicationModule;
-import com.raizlabs.android.dbflow.config.FlowManager;
+import com.develop.vic.quiz.components.DaggerAppComponent;
+
 
 /**
  * Created by vic on 18/05/2016.
@@ -17,7 +18,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         //FlowManager.init(this);
-        mAppComponent = AppComponent.builder()
+
+        mAppComponent = DaggerAppComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
     }

@@ -19,6 +19,7 @@ package com.develop.vic.quiz.components;
 
 
 import android.app.Application;
+import android.content.Context;
 
 import com.develop.vic.quiz.App;
 
@@ -39,7 +40,9 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Application providesApplication() {
+    public Context appContext() {
         return mApplication;
     }
+
+
 }

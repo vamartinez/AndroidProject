@@ -31,10 +31,12 @@ dependencies {
     compile 'com.android.support:palette-v7:23.4.0'
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.google.dagger:dagger:2.4'
-    compile 'io.reactivex:rxjava:1.1.5'
-    compile 'io.reactivex:rxandroid:1.2.0'
+    apt 'com.google.dagger:dagger-compiler:2.0'
+//    compile 'io.reactivex:rxjava:1.1.5'
+ //   compile 'io.reactivex:rxandroid:1.2.0'
     compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
     // kotlin extensions
     //compile "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}"
 }
