@@ -18,7 +18,7 @@ import com.develop.vic.quiz.dummy.DummyContent;
  * in two-pane mode (on tablets) or a {@link QuizDetailActivity}
  * on handsets.
  */
-public class QuizDetailFragment extends Fragment {
+public class QuizDetailFragment extends BaseFragment {
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -41,7 +41,7 @@ public class QuizDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getComponent().inject(this);
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader

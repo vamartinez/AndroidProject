@@ -17,20 +17,13 @@
 
 package com.develop.vic.quiz.components;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-import android.content.Context;
+import javax.inject.Scope;
 
-import com.develop.vic.quiz.ui.QuizDetailFragment;
-import com.develop.vic.quiz.ui.QuizListActivity;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
-
-
-@Singleton
-@Component(modules = {ApplicationModule.class})
-public interface AppComponent {
+@Scope
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ActivityScope {
 
 }
-

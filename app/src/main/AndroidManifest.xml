@@ -28,6 +28,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.QuizListActivity" />
         </activity>
+        <activity
+            android:name=".ui.EditQUizActivity"
+            android:label="@string/title_activity_edit_quiz"
+            android:parentActivityName=".ui.BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.develop.vic.quiz.ui.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>

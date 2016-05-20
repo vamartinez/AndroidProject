@@ -21,15 +21,15 @@ import com.develop.vic.quiz.ui.QuizListActivity;
  * item details are presented side-by-side with a list of items
  * in a {@link QuizListActivity}.
  */
-public class QuizDetailActivity extends AppCompatActivity {
+public class QuizDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getComponent().inject(this);
         setContentView(R.layout.activity_quiz_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
