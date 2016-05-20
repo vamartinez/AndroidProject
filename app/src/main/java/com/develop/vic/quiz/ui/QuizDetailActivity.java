@@ -16,7 +16,7 @@ import com.develop.vic.quiz.ui.QuizDetailFragment;
 import com.develop.vic.quiz.ui.QuizListActivity;
 
 /**
- * An activity representing a single Quiz detail screen. This
+ * An activity representing a single QuizDB detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link QuizListActivity}.

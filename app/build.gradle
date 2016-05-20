@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
-def dbflow_version = "3.0.0-beta6"
+def dbflow_version = "3.0.0-beta5"
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -36,6 +36,7 @@ dependencies {
  //   compile 'io.reactivex:rxandroid:1.2.0'
     compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+    apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
     provided 'org.glassfish:javax.annotation:10.0-b28'
     // kotlin extensions
     //compile "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}"

@@ -13,7 +13,7 @@ import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.dummy.DummyContent;
 
 /**
- * A fragment representing a single Quiz detail screen.
+ * A fragment representing a single QuizDB detail screen.
  * This fragment is either contained in a {@link QuizListActivity}
  * in two-pane mode (on tablets) or a {@link QuizDetailActivity}
  * on handsets.
@@ -35,6 +35,7 @@ public class QuizDetailFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public QuizDetailFragment() {
+        super();
     }
 
     @Override

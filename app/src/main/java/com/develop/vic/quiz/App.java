@@ -6,6 +6,7 @@ import android.support.annotation.VisibleForTesting;
 import com.develop.vic.quiz.components.AppComponent;
 import com.develop.vic.quiz.components.ApplicationModule;
 import com.develop.vic.quiz.components.DaggerAppComponent;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 
 /**
@@ -17,8 +18,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //FlowManager.init(this);
-
+        FlowManager.init(this);
         mAppComponent = DaggerAppComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();

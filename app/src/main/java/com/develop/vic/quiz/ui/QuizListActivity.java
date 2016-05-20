@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.dummy.DummyContent;
+import com.develop.vic.quiz.ui.adapter.QuizAdapter;
 
 import java.util.List;
 
@@ -54,16 +55,16 @@ public class QuizListActivity extends AppCompatActivity {
             }
         });
 
-        View recyclerView = findViewById(R.id.quiz_list);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.quiz_list);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        recyclerView.setAdapter(new QuizAdapter());
 
         if (findViewById(R.id.quiz_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
             // activity should be in two-pane mode.
-            mTwoPane = true;
+          //  mTwoPane = true;
         }
     }
 
@@ -139,4 +140,6 @@ public class QuizListActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
