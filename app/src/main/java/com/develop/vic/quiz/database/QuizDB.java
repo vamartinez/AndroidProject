@@ -27,14 +27,34 @@ public class QuizDB extends BaseModel implements QuizValidation {
     @Column
     String name;
     @Column
-    boolean mPending;
-    @Column
-    String mClientId;
-    @Column
-    long mUserId;
+    String description;
+
+    public QuizDB() {
+    }
+
+    public QuizDB(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     @Override
     public void validate() {
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

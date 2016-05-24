@@ -23,7 +23,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.develop.vic.quiz.App;
+import com.develop.vic.quiz.controler.QuizController;
 import com.develop.vic.quiz.database.QuizDB;
+import com.develop.vic.quiz.models.Quiz;
 
 import javax.inject.Singleton;
 
@@ -39,12 +41,23 @@ public class ApplicationModule {
     public ApplicationModule(App application) {
         mApplication = application;
     }
-
+/*
     @Provides
     @Singleton
     public Context appContext() {
         return mApplication;
     }
 
+    @Provides
+    @Singleton
+    public Quiz quiz() {
+        return new Quiz(mApplication);
+    }
 
+    @Provides
+    @Singleton
+    public QuizController quizController() {
+        return new QuizController(mApplication.getAppComponent());
+    }
+    */
 }

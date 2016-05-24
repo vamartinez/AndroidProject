@@ -1,5 +1,6 @@
 package com.develop.vic.quiz.components;
 
+import com.develop.vic.quiz.ui.EditQUizActivity;
 import com.develop.vic.quiz.ui.QuizDetailActivity;
 import com.develop.vic.quiz.ui.QuizDetailFragment;
 import com.develop.vic.quiz.ui.QuizListActivity;
@@ -15,4 +16,5 @@ public interface ActivityComponent extends AppComponent {
     void inject(QuizListActivity quizListActivity);
     void inject(QuizDetailActivity quizDetailActivity);
     void inject(QuizDetailFragment quizDetailFragment);
+    //void inject(EditQUizActivity editQUizActivity);
 }
