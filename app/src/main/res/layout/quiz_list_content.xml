@@ -5,6 +5,7 @@
     android:orientation="horizontal">
 
     <TextView
+        android:text="TITLE"
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -16,7 +16,7 @@ import com.develop.vic.quiz.components.ActivityComponent;
  * Created by Victor on 20/5/16.
  */
 public class BaseFragment extends Fragment {
-    private ActivityComponent mComponent;
+ //   private ActivityComponent mComponent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,12 @@ public class BaseFragment extends Fragment {
   //              .appComponent(getApp().getAppComponent()).build();
     }
 
-    protected App getApp() {
+   /* protected App getApp() {
         return (App) getActivity().getApplicationContext();
     }
 
     protected ActivityComponent getComponent() {
         return mComponent;
     }
-
+*/
 }

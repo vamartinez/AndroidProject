@@ -40,8 +40,8 @@ public class QuizListActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_list);
         getComponent().inject(this);
+        setContentView(R.layout.activity_quiz_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -60,7 +60,8 @@ public class QuizListActivity extends BaseActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.quiz_list);
         assert recyclerView != null;
-        recyclerView.setAdapter(new QuizAdapter());
+        QuizAdapter adapter = new QuizAdapter();
+        recyclerView.setAdapter(adapter);
 
         if (findViewById(R.id.quiz_detail_container) != null) {
             // The detail container view will be present only in the

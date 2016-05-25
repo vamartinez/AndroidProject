@@ -36,28 +36,28 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
 
-    private final App mApplication;
+    private final App mApp;
 
-    public ApplicationModule(App application) {
-        mApplication = application;
-    }
-/*
-    @Provides
-    @Singleton
-    public Context appContext() {
-        return mApplication;
+    public ApplicationModule(App app) {
+        mApp = app;
     }
 
-    @Provides
-    @Singleton
-    public Quiz quiz() {
-        return new Quiz(mApplication);
-    }
+       @Provides
+       @Singleton
+       public Context appContext() {
+           return mApp;
+       }
+
+         @Provides
+         @Singleton
+         public Quiz quiz() {
+             return new Quiz(mApp);
+         }
 
     @Provides
     @Singleton
     public QuizController quizController() {
-        return new QuizController(mApplication.getAppComponent());
+        return new QuizController(mApp.getAppComponent());
     }
-    */
+
 }

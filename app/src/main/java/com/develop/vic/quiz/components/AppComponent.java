@@ -20,10 +20,9 @@ package com.develop.vic.quiz.components;
 
 import android.content.Context;
 
+
 import com.develop.vic.quiz.controler.QuizController;
 import com.develop.vic.quiz.models.Quiz;
-import com.develop.vic.quiz.ui.QuizDetailFragment;
-import com.develop.vic.quiz.ui.QuizListActivity;
 
 import javax.inject.Singleton;
 
@@ -33,9 +32,10 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ApplicationModule.class})
 public interface AppComponent {
-  //  Context appContext();
- //   QuizController quizController();
- //   Quiz quiz();
- //   void inject(QuizController quizController);
+    QuizController quizController();
+    Context appContext();
+    Quiz quiz();
+    void inject(QuizController quizController);
+    void inject(Quiz quiz);
 }
 

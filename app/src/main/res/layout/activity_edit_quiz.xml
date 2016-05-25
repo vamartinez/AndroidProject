@@ -36,10 +36,11 @@
                     android:gravity="bottom">
 
                     <EditText
+                        android:id="@+id/titleTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="title"
-                        android:text="Hola mundo"
+                        android:hint="@string/title"
+                        android:text=""
                         android:textSize="31sp" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -51,12 +52,13 @@
                     android:gravity="bottom">
 
                     <EditText
+                        android:id="@+id/descriptionTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:hint="description"
+                        android:hint="@string/description"
                         android:lines="2"
-                        android:text="Hola mundo"
+                        android:text=""
                         android:textSize="14sp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -72,42 +74,65 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_edit_quiz" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dataRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"
+        android:src="@drawable/ic_send"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:background="@android:color/holo_orange_light"
+        android:layout_height="wrap_content"
+        android:background="#f7f2f2"
         android:clipToPadding="true"
-        app:behavior_peekHeight="100dp"
+        app:behavior_peekHeight="60dp"
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <Button
-                android:text="Open Text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp"
-                android:text="@string/large_text"
-                android:textSize="16sp" />
-        </LinearLayout>
 
+            <Button
+                android:id="@+id/textBTN"
+                style="?android:buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_text_fields"
+                android:drawableStart="@drawable/ic_text_fields"
+                android:text="Open Text"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/multipleBTN"
+                style="?android:buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_check_circle"
+                android:drawableStart="@drawable/ic_check_circle"
+                android:text="Multiple Choise"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/cmbBTN"
+                style="?android:buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_menu"
+                android:drawableStart="@drawable/ic_menu"
+                android:text="Combo box"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
 
 
     </android.support.v4.widget.NestedScrollView>

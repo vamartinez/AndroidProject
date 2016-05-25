@@ -13,8 +13,9 @@ import dagger.Component;
 @ActivityScope
 @Component(dependencies = AppComponent.class)
 public interface ActivityComponent extends AppComponent {
+
+    void inject(EditQUizActivity editQUizActivity);
     void inject(QuizListActivity quizListActivity);
-    void inject(QuizDetailActivity quizDetailActivity);
-    void inject(QuizDetailFragment quizDetailFragment);
-    //void inject(EditQUizActivity editQUizActivity);
+ //   void inject(QuizDetailActivity quizDetailActivity);
+ //   void inject(QuizDetailFragment quizDetailFragment);
 }

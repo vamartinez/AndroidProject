@@ -1,6 +1,7 @@
 package com.develop.vic.quiz.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +33,12 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> {
     @Override
     public void onBindViewHolder(Quiz.ViewHolder holder, int position) {
 
+        Log.e(this.toString(),"esto es"+mFlowCursorList.getItem(position).getName());
     }
 
     @Override
     public int getItemCount() {
+        Log.e(this.toString(),"size es"+ mFlowCursorList.getCount());
         return mFlowCursorList.getCount();
     }
 }

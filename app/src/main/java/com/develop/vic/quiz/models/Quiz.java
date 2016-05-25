@@ -21,17 +21,23 @@ import com.develop.vic.quiz.dummy.DummyContent;
 public class Quiz {
 
     private QuizDB quizDB;
-   // protected final AppComponent mComponent;
+    protected final AppComponent mComponent;
 
     public Quiz(App app) {
-      //  mComponent = app.getAppComponent();
-    //    this.quizDB = new QuizDB();
+        mComponent = app.getAppComponent();
+        app.getAppComponent().inject(this);
+        this.quizDB = new QuizDB();
     }
 
 
 
     public void save() {
         quizDB.save();
+    }
+
+    public void setData(String name, String description) {
+        this.quizDB.setDescription(description);
+        this.quizDB.setName(name);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

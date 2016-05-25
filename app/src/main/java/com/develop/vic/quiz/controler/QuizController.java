@@ -14,15 +14,18 @@ import javax.inject.Inject;
  */
 public class QuizController {
     @Inject
-    Context appContext;
-
+    Context mAppContext;
+    @Inject
+    transient Quiz mQuiz;
 
     public QuizController(AppComponent appComponent)
     {
-     //   appComponent.inject(this);
+        appComponent.inject(this);
     }
 
     public void createQuiz(String name, String description ){
+        mQuiz.setData(name,description);
+        mQuiz.save();
        // Quiz q = new Quiz(name,description);
     }
 }
