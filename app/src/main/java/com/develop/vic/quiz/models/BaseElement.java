@@ -10,16 +10,13 @@ import com.develop.vic.quiz.interfaces.QuestionValidation;
  */
 public abstract class BaseElement implements QuestionValidation {
 
-    protected int layoutId;
+
 
     public abstract class questionHolder extends RecyclerView.ViewHolder {
         public questionHolder(View itemView) {
             super(itemView);
         }
     }
-    protected abstract  RecyclerView.ViewHolder  questionHolder();
 
-    public int getLayoutId() {
-        return layoutId;
-    }
+    public abstract int getLayoutId();
 }

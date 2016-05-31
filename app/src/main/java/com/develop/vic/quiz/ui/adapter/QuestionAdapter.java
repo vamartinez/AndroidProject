@@ -19,34 +19,38 @@ import java.util.List;
 /**
  * Created by vic on 19/05/2016.
  */
-public class QuestionAdapter extends RecyclerView.Adapter<BaseElement.questionHolder> {
+public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<BaseElement> questionList;
+    private ArrayList<BaseElement> questionList;
 
-    public QuestionAdapter() {
-        questionList = new ArrayList<BaseElement>();
+    public QuestionAdapter(ArrayList<BaseElement> lista) {
+        questionList = lista;
     }
 
     public void add(BaseElement element) {
         questionList.add(element);
-        this.notifyItemInserted(questionList.size() - 1);
+     //   this.notifyItemInserted(questionList.size() - 1);
     }
 
+
+
     @Override
-    public BaseElement.questionHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      //  Log.e("create",questionList.get(viewType).getLayoutId()+"aa"+viewType);
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.quiz_list_content, parent, false);
-        return null;
+        return new Quiz.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(BaseElement.questionHolder holder, int position) {
+    public void onBindViewHolder( RecyclerView.ViewHolder holder, int position) {
 
-
+        Log.e(this.toString(),"Bind!!");
     }
 
     @Override
     public int getItemCount() {
+        Log.e(this.toString(),"sdize"+questionList.size());
         return questionList.size();
 
     }

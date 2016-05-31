@@ -51,4 +51,5 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     // kotlin extensions
     //compile "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}"
+    compile 'com.android.support:cardview-v7:23.4.0'
 }

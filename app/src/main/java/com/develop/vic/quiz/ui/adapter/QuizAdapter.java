@@ -20,7 +20,7 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> {
 
     public QuizAdapter() {
         if (mFlowCursorList == null)
-            mFlowCursorList = new FlowCursorList<QuizDB>(false,QuizDB.class);
+            mFlowCursorList = new FlowCursorList<QuizDB>(false, QuizDB.class);
     }
 
     @Override
@@ -32,13 +32,14 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> {
 
     @Override
     public void onBindViewHolder(Quiz.ViewHolder holder, int position) {
-
-        Log.e(this.toString(),"esto es"+mFlowCursorList.getItem(position).getName());
+        QuizDB item = mFlowCursorList.getItem(position);
+        holder.mIdView.setText(item.getName());
+        holder.mContentView.setText(item.getDescription());
+        holder.counterTV.setText(String.valueOf(item.getQuestionCount()));
     }
 
     @Override
     public int getItemCount() {
-        Log.e(this.toString(),"size es"+ mFlowCursorList.getCount());
         return mFlowCursorList.getCount();
     }
 }

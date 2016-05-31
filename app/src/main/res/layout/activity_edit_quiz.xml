@@ -77,7 +77,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dataRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/divider"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton

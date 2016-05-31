@@ -58,4 +58,8 @@ public class QuizDB extends BaseModel implements QuizValidation {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getQuestionCount() {
+        return 0;
+    }
 }

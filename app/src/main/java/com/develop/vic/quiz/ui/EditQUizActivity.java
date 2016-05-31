@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +15,12 @@ import android.widget.Toast;
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.controler.QuizController;
+import com.develop.vic.quiz.models.BaseElement;
 import com.develop.vic.quiz.models.OpenText;
 import com.develop.vic.quiz.ui.adapter.QuestionAdapter;
 
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -39,7 +43,7 @@ public class EditQUizActivity extends BaseActivity {
     @InjectView(R.id.dataRV)
     protected RecyclerView dataRV;
 
-    private QuestionAdapter questionAdapter = new QuestionAdapter();
+    private QuestionAdapter questionAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,12 @@ public class EditQUizActivity extends BaseActivity {
         ButterKnife.inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ArrayList<BaseElement> lista = new ArrayList<>();
+        questionAdapter = new QuestionAdapter(lista);
+        lista.add(new OpenText());
+        lista.add(new OpenText());
+        lista.add(new OpenText());
+        lista.add(new OpenText());
         dataRV.setAdapter(questionAdapter);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +71,9 @@ public class EditQUizActivity extends BaseActivity {
         textBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e(this.toString(),"elemento agregado");
                 questionAdapter.add(new OpenText());
+                questionAdapter.notifyItemInserted(questionAdapter.getItemCount()-1);
             }
         });
     }
