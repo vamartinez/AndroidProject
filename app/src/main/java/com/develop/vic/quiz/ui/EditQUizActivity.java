@@ -18,6 +18,7 @@ import com.develop.vic.quiz.controler.QuizController;
 import com.develop.vic.quiz.models.BaseElement;
 import com.develop.vic.quiz.models.OpenText;
 import com.develop.vic.quiz.ui.adapter.QuestionAdapter;
+import com.develop.vic.quiz.ui.adapter.QuizAdapter;
 
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class EditQUizActivity extends BaseActivity {
+public class EditQuizActivity extends BaseActivity {
 
     @Inject
     QuizController mQuizController;
@@ -40,7 +41,8 @@ public class EditQUizActivity extends BaseActivity {
     protected FloatingActionButton fab;
     @InjectView(R.id.textBTN)
     protected Button textBTN;
-    @InjectView(R.id.dataRV)
+
+    @InjectView(R.id.question_list)
     protected RecyclerView dataRV;
 
     private QuestionAdapter questionAdapter;
@@ -53,13 +55,9 @@ public class EditQUizActivity extends BaseActivity {
         ButterKnife.inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ArrayList<BaseElement> lista = new ArrayList<>();
-        questionAdapter = new QuestionAdapter(lista);
-        lista.add(new OpenText());
-        lista.add(new OpenText());
-        lista.add(new OpenText());
-        lista.add(new OpenText());
-        dataRV.setAdapter(questionAdapter);
+        questionAdapter = new QuestionAdapter();
+        //      ((RecyclerView)findViewById(R.id.dataRV)).setAdapter(new QuizAdapter());
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,14 +65,18 @@ public class EditQUizActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext(), R.string.quiz_update, Toast.LENGTH_LONG).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(this.toString(),"elemento agregado");
+                Log.e(this.toString(), "elemento agregado");
                 questionAdapter.add(new OpenText());
-                questionAdapter.notifyItemInserted(questionAdapter.getItemCount()-1);
+                questionAdapter.notifyItemInserted(questionAdapter.getItemCount() - 1);
             }
         });
+
+        QuizAdapter adapter = new QuizAdapter();
+        dataRV.setAdapter(questionAdapter);
+
     }
 }

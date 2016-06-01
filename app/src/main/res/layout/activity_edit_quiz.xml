@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.develop.vic.quiz.ui.EditQUizActivity">
+    tools:context="com.develop.vic.quiz.ui.EditQuizActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -74,12 +74,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/dataRV"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/divider"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -89,6 +83,14 @@
         android:src="@drawable/ic_send"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <include layout="@layout/content_edit_quiz" />
+    </FrameLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/bottom_sheet"
@@ -134,8 +136,8 @@
                 android:text="Combo box"
                 android:textColor="@android:color/black" />
         </LinearLayout>
-
-
     </android.support.v4.widget.NestedScrollView>
 
+
 </android.support.design.widget.CoordinatorLayout>
+

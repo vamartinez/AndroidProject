@@ -23,34 +23,34 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private ArrayList<BaseElement> questionList;
 
-    public QuestionAdapter(ArrayList<BaseElement> lista) {
-        questionList = lista;
+    public QuestionAdapter() {
+        questionList = new ArrayList<>();
     }
 
     public void add(BaseElement element) {
         questionList.add(element);
-     //   this.notifyItemInserted(questionList.size() - 1);
+        this.notifyItemInserted(questionList.size() - 1);
     }
 
-
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-      //  Log.e("create",questionList.get(viewType).getLayoutId()+"aa"+viewType);
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.quiz_list_content, parent, false);
-        return new Quiz.ViewHolder(view);
+                .inflate(questionList.get(viewType).getLayoutId(), parent, false);
+        return new OpenText.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder( RecyclerView.ViewHolder holder, int position) {
-
-        Log.e(this.toString(),"Bind!!");
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Log.e(this.toString(), "Bind!!");
     }
 
     @Override
     public int getItemCount() {
-        Log.e(this.toString(),"sdize"+questionList.size());
         return questionList.size();
 
     }

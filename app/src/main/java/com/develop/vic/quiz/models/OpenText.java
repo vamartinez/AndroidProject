@@ -2,6 +2,8 @@ package com.develop.vic.quiz.models;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
@@ -25,23 +27,18 @@ public class OpenText extends BaseElement {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public final TextView counterTV;
-        public DummyContent.DummyItem mItem;
+        public final EditText titleTV;
+        public final EditText maxLenght;
+        public final Button dropBTN;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.titleTV);
-            mContentView = (TextView) view.findViewById(R.id.descriptionTV);
-            counterTV = (TextView) view.findViewById(R.id.counterTV);
+            titleTV = (EditText) view.findViewById(R.id.titleTV);
+            maxLenght = (EditText) view.findViewById(R.id.maxLenght);
+            dropBTN = (Button) view.findViewById(R.id.dropBTN);
+            //dropBTN.setOnClickListener(this.drop);
 
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
 
