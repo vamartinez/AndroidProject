@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.controler.QuizController;
 import com.develop.vic.quiz.models.BaseElement;
+import com.develop.vic.quiz.models.ComboBox;
+import com.develop.vic.quiz.models.MultipleChoise;
 import com.develop.vic.quiz.models.OpenText;
 import com.develop.vic.quiz.ui.adapter.QuestionAdapter;
 import com.develop.vic.quiz.ui.adapter.QuizAdapter;
@@ -28,7 +30,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class EditQuizActivity extends BaseActivity {
+public class EditQUizActivity extends BaseActivity {
 
     @Inject
     QuizController mQuizController;
@@ -41,6 +43,10 @@ public class EditQuizActivity extends BaseActivity {
     protected FloatingActionButton fab;
     @InjectView(R.id.textBTN)
     protected Button textBTN;
+    @InjectView(R.id.multipleBTN)
+    protected Button multipleBTN;
+    @InjectView(R.id.cmbBTN)
+    protected Button cmbBTN;
 
     @InjectView(R.id.question_list)
     protected RecyclerView dataRV;
@@ -69,11 +75,22 @@ public class EditQuizActivity extends BaseActivity {
         textBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(this.toString(), "elemento agregado");
                 questionAdapter.add(new OpenText());
-                questionAdapter.notifyItemInserted(questionAdapter.getItemCount() - 1);
             }
         });
+        multipleBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionAdapter.add(new MultipleChoise());
+            }
+        });
+        cmbBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionAdapter.add(new ComboBox());
+            }
+        });
+
 
         QuizAdapter adapter = new QuizAdapter();
         dataRV.setAdapter(questionAdapter);

@@ -44,7 +44,7 @@ public class QuizListActivity extends BaseActivity {
 
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent intent = new Intent(getApplicationContext(),EditQuizActivity.class);
+                Intent intent = new Intent(getApplicationContext(),EditQUizActivity.class);
                 startActivity(intent);
             }
         });

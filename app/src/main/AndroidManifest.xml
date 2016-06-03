@@ -29,7 +29,7 @@
                 android:value=".ui.QuizListActivity" />
         </activity>
         <activity
-            android:name=".ui.EditQuizActivity"
+            android:name=".ui.EditQUizActivity"
             android:label="@string/title_activity_edit_quiz"
             android:parentActivityName=".ui.BaseActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -11,6 +11,7 @@ import com.develop.vic.quiz.database.QuizDB;
 import com.develop.vic.quiz.models.BaseElement;
 import com.develop.vic.quiz.models.OpenText;
 import com.develop.vic.quiz.models.Quiz;
+import com.develop.vic.quiz.ui.Constant;
 import com.raizlabs.android.dbflow.list.FlowCursorList;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * Created by vic on 19/05/2016.
  */
-public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     private ArrayList<BaseElement> questionList;
 
@@ -41,7 +42,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(questionList.get(viewType).getLayoutId(), parent, false);
-        return new OpenText.ViewHolder(view);
+        return questionList.get(0).getHolder(view, this);
     }
 
     @Override
@@ -54,4 +55,22 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return questionList.size();
 
     }
+
+    // onClick Listener for view
+    @Override
+    public void onClick(View v) {
+        List<Object> tag = (List<Object>) v.getTag();
+        Log.e(this.toString(),"tags>"+tag.toString());
+        switch (((String)tag.get(1))) {
+            case Constant.DROP:
+                questionList.remove((int) tag.get(0));
+                this.notifyItemRemoved((int) tag.get(0));
+                break;
+            case Constant.EXTRA_OPTION:
+           //     questionList.get((int) tag.get(0)).extraOption(v);
+                break;
+
+        }
+    }
+
 }

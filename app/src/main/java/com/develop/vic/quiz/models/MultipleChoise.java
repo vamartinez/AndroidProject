@@ -1,29 +1,17 @@
 package com.develop.vic.quiz.models;
 
-import android.provider.SyncStateContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
-import com.develop.vic.quiz.database.question.OpenTextQDB;
-import com.develop.vic.quiz.dummy.DummyContent;
 import com.develop.vic.quiz.ui.Constant;
 
 /**
- * Created by vic on 18/05/2016.
+ * Created by Victor on 3/6/16.
  */
-public class OpenText extends BaseElement {
-
-    private OpenTextQDB question;
-
-    @Override
-    public void valid() {
-
-    }
-
+public class MultipleChoise extends BaseElement {
     @Override
     public void extraOption(View v) {
 
@@ -31,12 +19,16 @@ public class OpenText extends BaseElement {
 
     @Override
     public int getLayoutId() {
-        return R.layout.open_text_add_content;
+        return R.layout.multiple_choise_add_content;
     }
 
     @Override
+    public void valid() {
+
+    }
+    @Override
     public RecyclerView.ViewHolder getHolder(View itemView, View.OnClickListener listener) {
-        return new OpenText.ViewHolder(itemView, listener);
+        return new MultipleChoise.ViewHolder(itemView, listener);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -56,7 +48,4 @@ public class OpenText extends BaseElement {
 
         }
     }
-
 }
-
-
