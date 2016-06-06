@@ -65,8 +65,6 @@ public class EditQuizActivity extends BaseActivity {
             questionAdapter.addAll(mQuizController.getList());
         }
 
-        //      ((RecyclerView)findViewById(R.id.dataRV)).setAdapter(new QuizAdapter());
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,14 +95,13 @@ public class EditQuizActivity extends BaseActivity {
     }
 
     private void saveQuiz() {
+        titleTV.requestFocus();
         if (!(questionAdapter.getItemCount() > 0)) {
             Toast.makeText(getApplicationContext(), "Create the questions after save", Toast.LENGTH_SHORT).show();
             return;
         }
         mQuizController.createQuiz(titleTV.getText().toString(), descriptionTV.getText().toString());
         mQuizController.addQuestion(questionAdapter.getData());
-
-
         Toast.makeText(getApplicationContext(), R.string.quiz_update, Toast.LENGTH_LONG).show();
 
     }

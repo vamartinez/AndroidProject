@@ -2,12 +2,14 @@ package com.develop.vic.quiz.models;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
+import com.develop.vic.quiz.database.AnswerDB;
 import com.develop.vic.quiz.database.QuestionDB;
 import com.develop.vic.quiz.ui.Constant;
 
@@ -90,9 +92,30 @@ public class OpenText extends BaseElement {
     }
 
     @Override
+    public void saveAnswer(long formId) {
+        if (answerDB == null) answerDB = new AnswerDB();
+        answerDB.setForm(formId);
+        answerDB.setQuestion(questionDB.getId());
+        answerDB.setResponse(((EditText) answerView.findViewById(R.id.answerET)).getText().toString());
+        answerDB.save();
+    }
+
+    @Override
+    public RecyclerView.ViewHolder getResponseHolder(View view) {
+        return null;
+    }
+
+    @Override
+    public void bindResponseHolder(RecyclerView.ViewHolder holder, int position) {
+
+    }
+
+    @Override
     protected void loadAnswerData(View v) {
-        ((TextView)v.findViewById(R.id.questionTV)).setText(questionDB.getName());
-        ((EditText)v.findViewById(R.id.answerET)).setMaxEms(questionDB.getMaxLenght());
+        ((TextView) v.findViewById(R.id.questionTV)).setText(questionDB.getName());
+        InputFilter[] fArray = new InputFilter[1];
+        fArray[0] = new InputFilter.LengthFilter(questionDB.getMaxLenght());
+        ((EditText) v.findViewById(R.id.answerET)).setFilters(fArray);
     }
 
 

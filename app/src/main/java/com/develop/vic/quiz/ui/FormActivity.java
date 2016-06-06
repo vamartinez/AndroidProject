@@ -35,13 +35,14 @@ public class FormActivity extends BaseActivity {
         ButterKnife.inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         int quizId = intent.getIntExtra(Constant.QUIZ_ID, -1);
         if (quizId != -1) {
             mQuizController.setQuizId(quizId);
             setTitle(mQuizController.getQuizTitle());
         }
-        ArrayList<BaseElement> elementList = mQuizController.getList();
+        final ArrayList<BaseElement> elementList = mQuizController.getList();
         for(int i=0;i<elementList.size();i++){
             Log.e(this.toString(),"add"+i+elementList.get(i).getClass().getName());
             containerLL.addView(elementList.get(i).getAnswerView(getApplicationContext()));
@@ -51,6 +52,7 @@ public class FormActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mQuizController.saveResponse(elementList);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.develop.vic.quiz.components.AppComponent;
+import com.develop.vic.quiz.database.FormDB;
 import com.develop.vic.quiz.database.QuestionDB;
 
 import com.develop.vic.quiz.database.QuestionDB_Table;
@@ -41,11 +42,12 @@ public class QuizController {
     public void addQuestion(ArrayList<BaseElement> list) {
         int i = 0;
         for (BaseElement question : list) {
-            question.persist(mQuiz.getId());
+            question.persistQuestion(mQuiz.getId());
         }
 
 
     }
+
 
     public void setQuizId(int quizId) {
         this.mQuiz.setID(quizId);
@@ -58,10 +60,10 @@ public class QuizController {
                 .where(QuestionDB_Table.quiz.eq(mQuiz.getId()))
                 .queryList();
         if (questionDBList != null) {
-            Log.e(this.toString(),"Preguntas cargadas" + questionDBList.size()+"de "+mQuiz.getId());
+            Log.e(this.toString(), "Preguntas cargadas" + questionDBList.size() + "de " + mQuiz.getId());
             for (int i = 0; i < questionDBList.size(); i++) {
                 QuestionDB objectDB = questionDBList.get(i);
-                Log.e(this.toString(),"Preguntas TIPO  >>>"+objectDB.getType());
+                Log.e(this.toString(), "Preguntas TIPO  >>>" + objectDB.getType());
                 switch (objectDB.getType()) {
                     case OpenText.CODE:
                         list.add(new OpenText(objectDB));
@@ -74,7 +76,7 @@ public class QuizController {
                         break;
 
                     default:
-                        Log.e(this.toString(),"Pregunta no carga!!!!"+objectDB.getType());
+                        Log.e(this.toString(), "Pregunta no carga!!!!" + objectDB.getType());
                         break;
                 }
             }
@@ -89,5 +91,15 @@ public class QuizController {
 
     public String getDescriptionQuiz() {
         return this.mQuiz.getDescription();
+    }
+
+    public void saveResponse(ArrayList<BaseElement> baseElements) {
+        FormDB form = new FormDB();
+        form.setQuiz(mQuiz.getId());
+        form.save();
+        for (BaseElement element : baseElements) {
+            element.saveAnswer(form.getId());
+        }
+
     }
 }

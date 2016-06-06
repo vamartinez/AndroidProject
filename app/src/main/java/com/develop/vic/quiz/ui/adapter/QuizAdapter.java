@@ -12,6 +12,7 @@ import com.develop.vic.quiz.models.Quiz;
 import com.develop.vic.quiz.ui.Constant;
 import com.develop.vic.quiz.ui.EditQuizActivity;
 import com.develop.vic.quiz.ui.FormActivity;
+import com.develop.vic.quiz.ui.QuizDetailActivity;
 import com.raizlabs.android.dbflow.list.FlowCursorList;
 
 import java.util.ArrayList;
@@ -55,8 +56,7 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> implement
         list = new ArrayList<>();
         list.add(0, position);
         list.add(1, Constant.EXTRA_OPTION);
-        holder.resultBTN.setTag(list);
-        holder.resultBTN.setOnClickListener(this);
+        holder.mView.setTag(list);
         holder.mView.setOnClickListener(this);
 
     }
@@ -80,7 +80,7 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> implement
                 v.getContext().startActivity(intent);
                 break;
             case Constant.EXTRA_OPTION:
-                Intent i = new Intent(v.getContext(), FormActivity.class);
+                Intent i = new Intent(v.getContext(), QuizDetailActivity.class);
                 i.putExtra(Constant.QUIZ_ID, (int) tag.get(0));
                 v.getContext().startActivity(i);
                 break;

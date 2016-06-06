@@ -40,11 +40,7 @@
         <activity
             android:name=".ui.FormActivity"
             android:label="@string/title_activity_form"
-            android:parentActivityName=".ui.BaseActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.develop.vic.quiz.ui.BaseActivity" />
         </activity>
     </application>
 </manifest>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.develop.vic.quiz.ui.FormActivity">
+    tools:context="ui.FormActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -35,6 +35,7 @@
             <LinearLayout
                 android:id="@+id/containerLL"
                 android:layout_width="match_parent"
+                android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </android.support.v7.widget.CardView>

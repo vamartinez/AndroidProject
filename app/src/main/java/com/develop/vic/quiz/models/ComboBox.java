@@ -5,12 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
+import com.develop.vic.quiz.database.AnswerDB;
 import com.develop.vic.quiz.database.QuestionDB;
 import com.develop.vic.quiz.ui.Constant;
 
@@ -85,7 +88,7 @@ public class ComboBox extends BaseElement {
             holder.titleTV.setText(questionDB.getName());
             for (String option : questionDB.getOptions()) {
                 Log.e(this.toString(), option);
-                extraOption(holder.addRowBTN, option,position);
+                extraOption(holder.addRowBTN, option, position);
             }
         }
         holder.addRowBTN.setTag(list);
@@ -114,8 +117,29 @@ public class ComboBox extends BaseElement {
     @Override
     protected void loadAnswerData(View v) {
         ((TextView) v.findViewById(R.id.questionTV)).setText(questionDB.getName());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(v.getContext(),
+                android.R.layout.simple_spinner_item, questionDB.getOptions());
+        ((Spinner) v.findViewById(R.id.answerSP)).setAdapter(adapter);
     }
 
+    @Override
+    public void saveAnswer(long formId) {
+        if (answerDB == null) answerDB = new AnswerDB();
+        answerDB.setForm(formId);
+        answerDB.setQuestion(questionDB.getId());
+        answerDB.setResponse(String.valueOf(((Spinner) answerView.findViewById(R.id.answerSP)).getSelectedItemPosition()));
+        answerDB.save();
+    }
+
+    @Override
+    public RecyclerView.ViewHolder getResponseHolder(View view) {
+        return null;
+    }
+
+    @Override
+    public void bindResponseHolder(RecyclerView.ViewHolder holder, int position) {
+
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;

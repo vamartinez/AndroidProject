@@ -4,54 +4,40 @@ import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
+import com.develop.vic.quiz.controler.QuizController;
 import com.develop.vic.quiz.dummy.DummyContent;
 
-/**
- * A fragment representing a single QuizDB detail screen.
- * This fragment is either contained in a {@link QuizListActivity}
- * in two-pane mode (on tablets) or a {@link QuizDetailActivity}
- * on handsets.
- */
+import javax.inject.Inject;
+
+
 public class QuizDetailFragment extends BaseFragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-    public static final String ARG_ITEM_ID = "item_id";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    private DummyContent.DummyItem mItem;
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public QuizDetailFragment() {
         super();
     }
 
+    @Inject
+    QuizController mQuizController;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     //   getComponent().inject(this);
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+        getComponent().inject(this);
+        if (getArguments().containsKey(Constant.QUIZ_ID)) {
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
+                Log.e(this.toString(),mQuizController.getQuizTitle()+" - ID result>>>"+getArguments().getInt(Constant.QUIZ_ID));
+                mQuizController.setQuizId(getArguments().getInt(Constant.QUIZ_ID));
+                appBarLayout.setTitle(mQuizController.getQuizTitle());
             }
         }
     }
@@ -60,12 +46,7 @@ public class QuizDetailFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.quiz_detail, container, false);
-
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.quiz_detail)).setText(mItem.details);
-        }
-
+        mQuizController.getList();
         return rootView;
     }
 }

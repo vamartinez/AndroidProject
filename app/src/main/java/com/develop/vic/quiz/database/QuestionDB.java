@@ -29,8 +29,6 @@ public class QuestionDB extends BaseModel {
     @Column
     int maxLenght;
     @Column
-    int minLenght;
-    @Column
     String Options;
     @Column
     long quiz;
@@ -95,13 +93,6 @@ public class QuestionDB extends BaseModel {
         this.order = order;
     }
 
-    public int getMinLenght() {
-        return minLenght;
-    }
-
-    public void setMinLenght(int minLenght) {
-        this.minLenght = minLenght;
-    }
 
     public List<String> getOptions() {
         JSONArray jsArray = null;
