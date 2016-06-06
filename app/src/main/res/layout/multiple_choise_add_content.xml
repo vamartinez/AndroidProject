@@ -45,13 +45,38 @@
                     android:gravity="bottom">
 
                     <EditText
-                        android:id="@+id/maxLenght"
+                        android:id="@+id/minResponseET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="max lenght"
+                        android:hint="min number of options"
                         android:inputType="number"
                         android:text="" />
                 </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="bottom">
+
+                    <EditText
+                        android:id="@+id/maxResponseTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="max number of options"
+                        android:inputType="number"
+                        android:text="" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/optionContainerLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
             </LinearLayout>
 
             <android.support.v7.widget.ButtonBarLayout
@@ -65,6 +90,13 @@
                     android:layout_height="wrap_content"
                     android:text="DROP"
                     android:textColor="@color/colorPrimaryDark" />
+
+                <Button
+                    android:id="@+id/addRowBTN"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ADD OPTION" />
             </android.support.v7.widget.ButtonBarLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

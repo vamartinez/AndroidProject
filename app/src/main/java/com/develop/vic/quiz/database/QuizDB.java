@@ -62,4 +62,8 @@ public class QuizDB extends BaseModel implements QuizValidation {
     public int getQuestionCount() {
         return 0;
     }
+
+    public long getId() {
+        return id;
+    }
 }

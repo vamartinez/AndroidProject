@@ -3,8 +3,10 @@ package com.develop.vic.quiz.models;
 
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -12,7 +14,9 @@ import com.develop.vic.quiz.App;
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.components.AppComponent;
 import com.develop.vic.quiz.database.QuizDB;
+import com.develop.vic.quiz.database.QuizDB_Table;
 import com.develop.vic.quiz.dummy.DummyContent;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 
 /**
@@ -27,8 +31,8 @@ public class Quiz {
         mComponent = app.getAppComponent();
         app.getAppComponent().inject(this);
         this.quizDB = new QuizDB();
+        Log.e(this.toString(),"creado desde app");
     }
-
 
 
     public void save() {
@@ -40,12 +44,34 @@ public class Quiz {
         this.quizDB.setName(name);
     }
 
+    public long getId() {
+        return quizDB.getId();
+    }
+
+    public void setID(int id) {
+        Log.e(this.toString(),"act id"+id);
+        QuizDB quiz = SQLite.select()
+                .from(QuizDB.class)
+                .where(QuizDB_Table.id.eq(id)).querySingle();
+        if (quiz != null) this.quizDB = quiz; else Log.e(this.toString(),"Query en null");
+    }
+
+    public String getTitle() {
+        return quizDB.getName();
+    }
+
+    public String getDescription() {
+        return quizDB.getDescription();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
         public final TextView counterTV;
-        public DummyContent.DummyItem mItem;
+        public final Button editBTN;
+        public final Button dropBTN;
+        public final Button resultBTN;
 
         public ViewHolder(View view) {
             super(view);
@@ -53,16 +79,11 @@ public class Quiz {
             mIdView = (TextView) view.findViewById(R.id.titleTV);
             mContentView = (TextView) view.findViewById(R.id.descriptionTV);
             counterTV = (TextView) view.findViewById(R.id.counterTV);
+            editBTN = (Button) view.findViewById(R.id.editBTN);
+            dropBTN = (Button) view.findViewById(R.id.dropBTN);
+            resultBTN = (Button) view.findViewById(R.id.resultBTN);
 
         }
 
-
-
-
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

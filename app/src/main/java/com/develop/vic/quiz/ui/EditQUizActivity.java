@@ -1,36 +1,30 @@
 package com.develop.vic.quiz.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.controler.QuizController;
-import com.develop.vic.quiz.models.BaseElement;
 import com.develop.vic.quiz.models.ComboBox;
 import com.develop.vic.quiz.models.MultipleChoise;
 import com.develop.vic.quiz.models.OpenText;
 import com.develop.vic.quiz.ui.adapter.QuestionAdapter;
-import com.develop.vic.quiz.ui.adapter.QuizAdapter;
 
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class EditQUizActivity extends BaseActivity {
+public class EditQuizActivity extends BaseActivity {
 
     @Inject
     QuizController mQuizController;
@@ -62,16 +56,24 @@ public class EditQUizActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         questionAdapter = new QuestionAdapter();
+        Intent intent = getIntent();
+        int quizId = intent.getIntExtra(Constant.QUIZ_ID, -1);
+        if (quizId != -1) {
+            mQuizController.setQuizId(quizId);
+            titleTV.setText(mQuizController.getQuizTitle());
+            descriptionTV.setText(mQuizController.getDescriptionQuiz());
+            questionAdapter.addAll(mQuizController.getList());
+        }
+
         //      ((RecyclerView)findViewById(R.id.dataRV)).setAdapter(new QuizAdapter());
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mQuizController.createQuiz(titleTV.getText().toString(), descriptionTV.getText().toString());
-                Toast.makeText(getApplicationContext(), R.string.quiz_update, Toast.LENGTH_LONG).show();
+                saveQuiz();
             }
         });
-        //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,10 +92,20 @@ public class EditQUizActivity extends BaseActivity {
                 questionAdapter.add(new ComboBox());
             }
         });
-
-
-        QuizAdapter adapter = new QuizAdapter();
         dataRV.setAdapter(questionAdapter);
+
+    }
+
+    private void saveQuiz() {
+        if (!(questionAdapter.getItemCount() > 0)) {
+            Toast.makeText(getApplicationContext(), "Create the questions after save", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mQuizController.createQuiz(titleTV.getText().toString(), descriptionTV.getText().toString());
+        mQuizController.addQuestion(questionAdapter.getData());
+
+
+        Toast.makeText(getApplicationContext(), R.string.quiz_update, Toast.LENGTH_LONG).show();
 
     }
 }
