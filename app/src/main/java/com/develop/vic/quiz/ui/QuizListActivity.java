@@ -12,6 +12,9 @@ import android.view.View;
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.ui.adapter.QuizAdapter;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * An activity representing a list of quizList. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -22,10 +25,8 @@ import com.develop.vic.quiz.ui.adapter.QuizAdapter;
  */
 public class QuizListActivity extends BaseActivity {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
+    @InjectView(R.id.quiz_list)
+    RecyclerView recyclerView;
     private boolean mTwoPane;
 
     @Override
@@ -33,6 +34,7 @@ public class QuizListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getComponent().inject(this);
         setContentView(R.layout.activity_quiz_list);
+        ButterKnife.inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -44,13 +46,11 @@ public class QuizListActivity extends BaseActivity {
 
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent intent = new Intent(getApplicationContext(),EditQuizActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EditQuizActivity.class);
                 startActivity(intent);
             }
         });
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.quiz_list);
-        assert recyclerView != null;
         QuizAdapter adapter = new QuizAdapter();
         recyclerView.setAdapter(adapter);
 
@@ -59,7 +59,7 @@ public class QuizListActivity extends BaseActivity {
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
             // activity should be in two-pane mode.
-          //  mTwoPane = true;
+            //  mTwoPane = true;
         }
     }
 

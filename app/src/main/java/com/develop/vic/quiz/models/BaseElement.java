@@ -5,11 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.database.AnswerDB;
 import com.develop.vic.quiz.database.QuestionDB;
 import com.develop.vic.quiz.interfaces.QuestionValidation;
+import com.develop.vic.quiz.ui.Constant;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by vic on 19/05/2016.
@@ -42,7 +49,11 @@ public abstract class BaseElement implements QuestionValidation {
         return R.layout.result_row;
     }
 
-    public abstract RecyclerView.ViewHolder getResponseHolder(View view);
+    public RecyclerView.ViewHolder getResponseHolder(View view) {
+        return new BaseElement.ViewHolder(view);
+    }
+
+    ;
 
     public abstract void bindResponseHolder(RecyclerView.ViewHolder holder, int position);
 
@@ -73,5 +84,17 @@ public abstract class BaseElement implements QuestionValidation {
         };
     }
 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public final View mView;
+        public final TextView titleTV;
+        public final LinearLayout responseContainerLL;
+
+        public ViewHolder(View view) {
+            super(view);
+            mView = view;
+            titleTV = (TextView) view.findViewById(R.id.titleTV);
+            responseContainerLL = (LinearLayout) view.findViewById(R.id.responseContainerLL);
+        }
+    }
 
 }

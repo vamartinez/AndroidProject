@@ -2,29 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:gravity="bottom">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/optionET"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="option"
-            android:text="" />
-    </android.support.design.widget.TextInputLayout>
+            android:orientation="vertical">
+            <TextView
+                android:text="pregunta!!!!!"
+                android:id="@+id/questionTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <ImageButton
-        android:id="@+id/trashBT"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete_black_24dp" />
-
+            <LinearLayout
+                android:id="@+id/responseContainerLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

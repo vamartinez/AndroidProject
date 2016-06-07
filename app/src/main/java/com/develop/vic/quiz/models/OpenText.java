@@ -12,6 +12,7 @@ import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.database.AnswerDB;
 import com.develop.vic.quiz.database.QuestionDB;
 import com.develop.vic.quiz.ui.Constant;
+import com.develop.vic.quiz.ui.adapter.ResultAdapter;
 
 import java.util.ArrayList;
 
@@ -100,14 +101,11 @@ public class OpenText extends BaseElement {
         answerDB.save();
     }
 
-    @Override
-    public RecyclerView.ViewHolder getResponseHolder(View view) {
-        return null;
-    }
 
     @Override
-    public void bindResponseHolder(RecyclerView.ViewHolder holder, int position) {
-
+    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position) {
+        BaseElement.ViewHolder holder = (BaseElement.ViewHolder) originHolder;
+        holder.titleTV.setOnFocusChangeListener(changeSaveListener(position));
     }
 
     @Override

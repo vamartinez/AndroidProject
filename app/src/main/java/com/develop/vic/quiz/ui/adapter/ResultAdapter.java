@@ -1,10 +1,12 @@
 package com.develop.vic.quiz.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.models.BaseElement;
 import com.develop.vic.quiz.ui.Constant;
 
@@ -19,6 +21,7 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private ArrayList<BaseElement> questionList;
 
     public ResultAdapter() {
+        Log.e(this.toString(),"Holder adapter created");
         questionList = new ArrayList<>();
     }
 
@@ -31,25 +34,24 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.notifyItemInserted(questionList.size() - 1);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(questionList.get(viewType).getResponseLayoutId(), parent, false);
+                .inflate(R.layout.result_row, parent, false);
         return questionList.get(viewType).getResponseHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Log.e(this.toString(),"Holder bind response");
         questionList.get(position).bindResponseHolder(holder, position);
     }
 
     @Override
     public int getItemCount() {
+        Log.e(this.toString(),"Holder list size>>"+questionList.size());
         return questionList.size();
     }
 

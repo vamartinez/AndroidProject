@@ -9,6 +9,7 @@
     android:textIsSelectable="true"
     tools:context=".ui.QuizDetailFragment">
     <TextView
+        android:text="titulo!!!!!"
         android:id="@+id/titleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -16,4 +17,9 @@
         android:id="@+id/descriptionTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/responseRV"
+        android:background="@color/cardview_dark_background"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"/>
 </LinearLayout>
