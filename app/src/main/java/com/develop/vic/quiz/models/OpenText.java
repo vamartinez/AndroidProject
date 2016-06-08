@@ -10,11 +10,18 @@ import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.database.AnswerDB;
+import com.develop.vic.quiz.database.AnswerDB_Table;
+import com.develop.vic.quiz.database.FormDB;
+import com.develop.vic.quiz.database.FormDB_Table;
 import com.develop.vic.quiz.database.QuestionDB;
+import com.develop.vic.quiz.database.QuestionDB_Table;
 import com.develop.vic.quiz.ui.Constant;
 import com.develop.vic.quiz.ui.adapter.ResultAdapter;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by vic on 18/05/2016.
@@ -103,9 +110,20 @@ public class OpenText extends BaseElement {
 
 
     @Override
-    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position) {
+    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position, int quizId) {
         BaseElement.ViewHolder holder = (BaseElement.ViewHolder) originHolder;
-        holder.titleTV.setOnFocusChangeListener(changeSaveListener(position));
+        holder.titleTV.setText(questionDB.getName());
+        List<AnswerDB> answerDBList = SQLite.select()
+                .from(AnswerDB.class)
+                .where(AnswerDB_Table.question.eq(questionDB.getId()))
+                .queryList();
+        for (AnswerDB answer : answerDBList) {
+            TextView textView = new TextView(((BaseElement.ViewHolder) originHolder).mView.getContext());
+            textView.setText(answer.getResponse());
+            holder.responseContainerLL.addView(textView);
+        }
+
+
     }
 
     @Override

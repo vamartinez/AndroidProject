@@ -67,6 +67,7 @@ public class QuizDetailFragment extends BaseFragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
             ResultAdapter adapter = new ResultAdapter();
             adapter.addAll(mQuizController.getList());
+            adapter.setQuizID(quizId);
             recyclerView.setAdapter(adapter);
         }
         return rootView;

@@ -20,7 +20,7 @@ import java.security.Timestamp;
 @ModelContainer
 @Table(database = AppDatabase.class)
 public class QuizDB extends BaseModel implements QuizValidation {
-    @Column
+
     @PrimaryKey(autoincrement = true)
     long id;
     @Column

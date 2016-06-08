@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.develop.vic.quiz.R;
 
@@ -31,7 +32,6 @@ public class QuizDetailActivity extends BaseActivity {
         }
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
-            Log.e(this.toString()," - ID rORIGINAL esult>>>"+getIntent().getIntExtra(Constant.QUIZ_ID,-1));
             arguments.putInt(Constant.QUIZ_ID,
                     getIntent().getIntExtra(Constant.QUIZ_ID, -1));
             QuizDetailFragment fragment = new QuizDetailFragment();
@@ -40,6 +40,17 @@ public class QuizDetailActivity extends BaseActivity {
                     .add(R.id.quiz_detail_container, fragment)
                     .commit();
         }
+        final int quizId = getIntent().getIntExtra(Constant.QUIZ_ID, -1);
+        View fab = findViewById(R.id.responseFAB);
+        assert fab != null;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                intent.putExtra(Constant.QUIZ_ID, quizId);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

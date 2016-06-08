@@ -137,7 +137,7 @@ public class ComboBox extends BaseElement {
     }
 
     @Override
-    public void bindResponseHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindResponseHolder(RecyclerView.ViewHolder holder, int position, int quizId) {
 
     }
 

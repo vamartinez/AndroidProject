@@ -53,9 +53,8 @@ public abstract class BaseElement implements QuestionValidation {
         return new BaseElement.ViewHolder(view);
     }
 
-    ;
 
-    public abstract void bindResponseHolder(RecyclerView.ViewHolder holder, int position);
+    public abstract void bindResponseHolder(RecyclerView.ViewHolder holder, int position, int quizId);
 
     public void persistQuestion(long quizID) {
         questionDB.setQuiz(quizID);
@@ -92,7 +91,7 @@ public abstract class BaseElement implements QuestionValidation {
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            titleTV = (TextView) view.findViewById(R.id.titleTV);
+            titleTV = (TextView) view.findViewById(R.id.questionTV);
             responseContainerLL = (LinearLayout) view.findViewById(R.id.responseContainerLL);
         }
     }

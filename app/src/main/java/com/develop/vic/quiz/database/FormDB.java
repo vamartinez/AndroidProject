@@ -14,7 +14,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 @ModelContainer
 @Table(database = AppDatabase.class)
 public class FormDB extends BaseModel  {
-    @Column
+
     @PrimaryKey(autoincrement = true)
     long id;
     @Column
