@@ -122,8 +122,6 @@ public class OpenText extends BaseElement {
             textView.setText(answer.getResponse());
             holder.responseContainerLL.addView(textView);
         }
-
-
     }
 
     @Override

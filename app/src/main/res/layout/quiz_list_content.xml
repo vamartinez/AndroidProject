@@ -42,12 +42,13 @@
                     android:id="@+id/counterTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
                     android:layout_toLeftOf="@+id/iconIV"
                     android:text="33"
                     android:textSize="25sp" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/iconIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

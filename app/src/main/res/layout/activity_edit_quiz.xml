@@ -88,8 +88,12 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <include layout="@layout/content_edit_quiz" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
     </FrameLayout>
 
     <android.support.v4.widget.NestedScrollView

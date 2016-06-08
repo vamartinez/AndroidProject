@@ -1,5 +1,6 @@
 package com.develop.vic.quiz.models;
 
+import android.content.Context;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,8 +18,10 @@ import android.widget.TextView;
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.database.AnswerDB;
+import com.develop.vic.quiz.database.AnswerDB_Table;
 import com.develop.vic.quiz.database.QuestionDB;
 import com.develop.vic.quiz.ui.Constant;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -160,7 +163,31 @@ public class MultipleChoise extends BaseElement {
     }
 
     @Override
-    public void bindResponseHolder(RecyclerView.ViewHolder holder, int position, int quizId) {
+    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position, int quizId) {
+        BaseElement.ViewHolder holder = (BaseElement.ViewHolder) originHolder;
+        holder.titleTV.setText(questionDB.getName());
+        List<AnswerDB> answerDBList = SQLite.select()
+                .from(AnswerDB.class)
+                .where(AnswerDB_Table.question.eq(questionDB.getId()))
+                .queryList();
+
+        int[] counter = new int[questionDB.getOptions().size()];
+        for (AnswerDB answer : answerDBList) {
+            for (String subAnswer : answer.getOptions()) {
+                counter[Integer.parseInt(subAnswer)] += 1;
+            }
+        }
+        int i = 0;
+        Context context = holder.mView.getContext();
+        context.setTheme(R.style.AppTheme);
+        for (String question : questionDB.getOptions()) {
+            LayoutInflater inflater = (LayoutInflater) holder.mView.getContext().getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            View child = inflater.inflate(R.layout.text_with_number, null);
+            ((TextView) child.findViewById(R.id.messageTV)).setText(question);
+            ((TextView) child.findViewById(R.id.valueTV)).setText(String.valueOf(counter[i]));
+            holder.responseContainerLL.addView(child);
+            i++;
+        }
 
     }
 

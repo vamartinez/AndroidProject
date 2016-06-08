@@ -60,10 +60,8 @@ public class QuizController {
                 .where(QuestionDB_Table.quiz.eq(mQuiz.getId()))
                 .queryList();
         if (questionDBList != null) {
-            Log.e(this.toString(), "Preguntas cargadas" + questionDBList.size() + "de " + mQuiz.getId());
             for (int i = 0; i < questionDBList.size(); i++) {
                 QuestionDB objectDB = questionDBList.get(i);
-                Log.e(this.toString(), "Preguntas TIPO  >>>" + objectDB.getType());
                 switch (objectDB.getType()) {
                     case OpenText.CODE:
                         list.add(new OpenText(objectDB));
@@ -74,9 +72,7 @@ public class QuizController {
                     case MultipleChoise.CODE:
                         list.add(new MultipleChoise(objectDB));
                         break;
-
                     default:
-                        Log.e(this.toString(), "Pregunta no carga!!!!" + objectDB.getType());
                         break;
                 }
             }

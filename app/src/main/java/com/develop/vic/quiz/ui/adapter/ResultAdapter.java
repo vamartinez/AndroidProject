@@ -46,13 +46,11 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.e(this.toString(),"Holder bind response");
         questionList.get(position).bindResponseHolder(holder, position, quizId);
     }
 
     @Override
     public int getItemCount() {
-        Log.e(this.toString(),"Holder list size>>"+questionList.size());
         return questionList.size();
     }
 

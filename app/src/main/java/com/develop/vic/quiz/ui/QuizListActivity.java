@@ -1,5 +1,6 @@
 package com.develop.vic.quiz.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,8 @@ import android.view.View;
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.ui.adapter.QuizAdapter;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -27,7 +30,8 @@ public class QuizListActivity extends BaseActivity {
 
     @InjectView(R.id.quiz_list)
     RecyclerView recyclerView;
-    private boolean mTwoPane;
+    @Inject
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,6 @@ public class QuizListActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,16 +54,8 @@ public class QuizListActivity extends BaseActivity {
             }
         });
 
-        QuizAdapter adapter = new QuizAdapter();
+        QuizAdapter adapter = new QuizAdapter(context);
         recyclerView.setAdapter(adapter);
-
-        if (findViewById(R.id.quiz_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
-            //  mTwoPane = true;
-        }
     }
 
 }
