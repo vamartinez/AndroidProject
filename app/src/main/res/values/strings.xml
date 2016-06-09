@@ -99,4 +99,17 @@
     <string name="question_after_save">Create the questions after save</string>
     <string name="response_complete_message">Quiz update, you can change your answer and save again</string>
     <string name="questions">" questions"</string>
+    <string name="question">Question</string>
+    <string name="drop">DROP</string>
+    <string name="add_option">ADD OPTION</string>
+    <string name="options">Options</string>
+    <string name="open_text">Open Text</string>
+    <string name="multiple_choise">Multiple Choise</string>
+    <string name="combo_box">Combo box</string>
+    <string name="save">save</string>
+    <string name="answer">answer</string>
+    <string name="add">add</string>
+    <string name="move_to_trash">move to trash</string>
+    <string name="option">option</string>
+    <string name="edit">EDIT</string>
 </resources>

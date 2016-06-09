@@ -9,8 +9,7 @@
         android:id="@+id/questionTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/primary_text"
-        android:text="question" />
+        android:textColor="@color/primary_text" />
 
     <EditText
         android:id="@+id/answerET"

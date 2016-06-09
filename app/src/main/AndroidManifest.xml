@@ -43,5 +43,10 @@
             android:label="@string/title_activity_form"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateVisible"/>
+        <provider
+            android:syncable="true"
+            android:authorities="com.develop.vic.quiz.database"
+            android:exported="true"
+            android:name=".database.AppDatabase_Provider"/>
     </application>
 </manifest>

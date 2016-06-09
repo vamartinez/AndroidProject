@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/basic_margin"
     android:textIsSelectable="true"
     tools:context=".ui.QuizDetailFragment">
     <TextView
@@ -19,5 +19,5 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/responseRV"
         android:layout_width="match_parent"
-        android:layout_height="500dp"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -23,10 +23,10 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
-                android:layout_marginTop="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:layout_marginTop="?attr/actionBarSize"
                 android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
@@ -66,20 +66,21 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                android:title=""
                 android:subtitle=""
+                android:title=""
+                app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
 
-        <android.support.design.widget.FloatingActionButton
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/save"
         android:src="@drawable/ic_send"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
@@ -89,6 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <include layout="@layout/content_edit_quiz" />
     </FrameLayout>
 
@@ -98,7 +100,7 @@
         android:layout_height="wrap_content"
         android:background="#f7f2f2"
         android:clipToPadding="true"
-        app:behavior_peekHeight="60dp"
+        app:behavior_peekHeight="@dimen/peek_height"
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
         <LinearLayout
@@ -111,9 +113,10 @@
                 style="?android:buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/open_text"
                 android:drawableLeft="@drawable/ic_text_fields"
                 android:drawableStart="@drawable/ic_text_fields"
-                android:text="Open Text"
+                android:text="@string/open_text"
                 android:textColor="@android:color/black" />
 
             <Button
@@ -121,9 +124,10 @@
                 style="?android:buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/multiple_choise"
                 android:drawableLeft="@drawable/ic_check_circle"
                 android:drawableStart="@drawable/ic_check_circle"
-                android:text="Multiple Choise"
+                android:text="@string/multiple_choise"
                 android:textColor="@android:color/black" />
 
             <Button
@@ -131,9 +135,10 @@
                 style="?android:buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/combo_box"
                 android:drawableLeft="@drawable/ic_menu"
                 android:drawableStart="@drawable/ic_menu"
-                android:text="Combo box"
+                android:text="@string/combo_box"
                 android:textColor="@android:color/black" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

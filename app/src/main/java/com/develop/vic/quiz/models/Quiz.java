@@ -35,7 +35,11 @@ public class Quiz {
 
 
     public void save() {
-        quizDB.save();
+        try {
+            quizDB.save();
+        } catch (Exception e) {
+
+        }
     }
 
     public void setData(String name, String description) {
