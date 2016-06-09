@@ -49,7 +49,7 @@ public class QuizController {
     }
 
 
-    public void setQuizId(int quizId) {
+    public void setQuizId(long quizId) {
         this.mQuiz.setID(quizId);
     }
 

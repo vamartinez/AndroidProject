@@ -19,10 +19,9 @@ import java.util.List;
 public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     private ArrayList<BaseElement> questionList;
-    private int quizId;
+    private long quizId;
 
     public ResultAdapter() {
-        Log.e(this.toString(),"Holder adapter created");
         questionList = new ArrayList<>();
     }
 
@@ -54,18 +53,13 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return questionList.size();
     }
 
-
-    public ArrayList<BaseElement> getData() {
-        return this.questionList;
-    }
-
     @Override
     public void onViewRecycled(RecyclerView.ViewHolder holder) {
         questionList.get(holder.getAdapterPosition()).save(holder.getAdapterPosition());
         super.onViewRecycled(holder);
     }
 
-    public void setQuizID(int quizId) {
+    public void setQuizID(long quizId) {
         this.quizId = quizId;
     }
 }

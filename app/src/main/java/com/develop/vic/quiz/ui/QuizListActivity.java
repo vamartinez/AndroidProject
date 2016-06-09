@@ -46,15 +46,12 @@ public class QuizListActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 Intent intent = new Intent(getApplicationContext(), EditQuizActivity.class);
                 startActivity(intent);
             }
         });
 
-        QuizAdapter adapter = new QuizAdapter(context);
+        QuizAdapter adapter = new QuizAdapter(this);
         recyclerView.setAdapter(adapter);
     }
 

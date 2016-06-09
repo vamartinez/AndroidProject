@@ -26,7 +26,7 @@ import butterknife.InjectView;
 
 public class QuizDetailFragment extends BaseFragment {
 
-    private int quizId;
+    private long quizId;
 
 
 
@@ -49,8 +49,7 @@ public class QuizDetailFragment extends BaseFragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                Log.e(this.toString(), mQuizController.getQuizTitle() + " - ID result>>>" + getArguments().getInt(Constant.QUIZ_ID));
-                quizId = getArguments().getInt(Constant.QUIZ_ID);
+                quizId = getArguments().getLong(Constant.QUIZ_ID);
                 mQuizController.setQuizId(quizId);
                 appBarLayout.setTitle(mQuizController.getQuizTitle());
             }
@@ -58,10 +57,8 @@ public class QuizDetailFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.quiz_detail, container, false);
-        ButterKnife.inject(this, rootView);
+    public void onResume() {
+        super.onResume();
         if (quizId != -1) {
             mQuizController.getList();
             recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
@@ -70,6 +67,14 @@ public class QuizDetailFragment extends BaseFragment {
             adapter.setQuizID(quizId);
             recyclerView.setAdapter(adapter);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.quiz_detail, container, false);
+        ButterKnife.inject(this, rootView);
         return rootView;
+
     }
 }

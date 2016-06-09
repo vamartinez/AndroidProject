@@ -23,6 +23,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
+                android:layout_marginTop="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -32,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="@dimen/small_bottom_margin"
                     android:gravity="bottom">
 
                     <EditText
@@ -40,8 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/title"
-                        android:text=""
-                        android:textSize="31sp" />
+                        android:textSize="@dimen/titleSize" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -55,11 +55,10 @@
                         android:id="@+id/descriptionTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginBottom="@dimen/small_bottom_margin"
                         android:hint="@string/description"
                         android:lines="2"
-                        android:text=""
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/medium_text" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -67,8 +66,9 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:visibility="gone"
                 app:layout_collapseMode="pin"
+                android:title=""
+                android:subtitle=""
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -88,12 +88,8 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <include layout="@layout/content_edit_quiz" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="60dp" />
     </FrameLayout>
 
     <android.support.v4.widget.NestedScrollView

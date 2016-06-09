@@ -54,7 +54,7 @@ public abstract class BaseElement implements QuestionValidation {
     }
 
 
-    public abstract void bindResponseHolder(RecyclerView.ViewHolder holder, int position, int quizId);
+    public abstract void bindResponseHolder(RecyclerView.ViewHolder holder, int position, long quizId);
 
     public void persistQuestion(long quizID) {
         questionDB.setQuiz(quizID);

@@ -31,7 +31,6 @@ public class Quiz {
         mComponent = app.getAppComponent();
         app.getAppComponent().inject(this);
         this.quizDB = new QuizDB();
-        Log.e(this.toString(),"creado desde app");
     }
 
 
@@ -48,12 +47,11 @@ public class Quiz {
         return quizDB.getId();
     }
 
-    public void setID(int id) {
-        Log.e(this.toString(),"act id"+id);
+    public void setID(long id) {
         QuizDB quiz = SQLite.select()
                 .from(QuizDB.class)
                 .where(QuizDB_Table.id.eq(id)).querySingle();
-        if (quiz != null) this.quizDB = quiz; else Log.e(this.toString(),"Query en null");
+        if (quiz != null) this.quizDB = quiz;
     }
 
     public String getTitle() {
@@ -71,7 +69,7 @@ public class Quiz {
         public final TextView counterTV;
         public final Button editBTN;
         public final Button dropBTN;
-        public final Button resultBTN;
+
 
         public ViewHolder(View view) {
             super(view);
@@ -81,7 +79,7 @@ public class Quiz {
             counterTV = (TextView) view.findViewById(R.id.counterTV);
             editBTN = (Button) view.findViewById(R.id.editBTN);
             dropBTN = (Button) view.findViewById(R.id.dropBTN);
-            resultBTN = (Button) view.findViewById(R.id.resultBTN);
+
 
         }
 

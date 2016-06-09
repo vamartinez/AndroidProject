@@ -1,6 +1,6 @@
 package com.develop.vic.quiz.ui.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,9 +16,7 @@ import com.develop.vic.quiz.database.QuizDB;
 import com.develop.vic.quiz.models.Quiz;
 import com.develop.vic.quiz.ui.Constant;
 import com.develop.vic.quiz.ui.EditQuizActivity;
-import com.develop.vic.quiz.ui.FormActivity;
 import com.develop.vic.quiz.ui.QuizDetailActivity;
-import com.raizlabs.android.dbflow.annotation.Database;
 import com.raizlabs.android.dbflow.list.FlowCursorList;
 import com.raizlabs.android.dbflow.runtime.FlowContentObserver;
 import com.raizlabs.android.dbflow.sql.language.SQLCondition;
@@ -35,16 +33,21 @@ import java.util.List;
 public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> implements View.OnClickListener {
 
     private FlowCursorList<QuizDB> mFlowCursorList;
+    private RecyclerView.Adapter adapter;
+    private Activity context;
 
-    public QuizAdapter(Context context) {
+    public QuizAdapter(Activity context) {
+        this.context = context;
         if (mFlowCursorList == null)
-            mFlowCursorList = new FlowCursorList<QuizDB>(false, QuizDB.class);
+            mFlowCursorList = new FlowCursorList<>(false, QuizDB.class);
         FlowContentObserver observer = new FlowContentObserver();
         observer.registerForContentChanges(context, QuizDB.class);
+        adapter = this;
         observer.addModelChangeListener(new FlowContentObserver.OnModelStateChangedListener() {
             @Override
             public void onModelStateChanged(@Nullable Class<? extends Model> table, BaseModel.Action action, @NonNull SQLCondition[] primaryKeyValues) {
-               notifyDataSetChanged();
+                notifyChange();
+
             }
         });
         FlowContentObserver observerQ = new FlowContentObserver();
@@ -52,7 +55,15 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> implement
         observerQ.addModelChangeListener(new FlowContentObserver.OnModelStateChangedListener() {
             @Override
             public void onModelStateChanged(@Nullable Class<? extends Model> table, BaseModel.Action action, @NonNull SQLCondition[] primaryKeyValues) {
-                notifyDataSetChanged();
+                notifyChange();
+            }
+        });
+    }
+
+    private void notifyChange() {
+        ((Activity) context).runOnUiThread(new Runnable() {
+            public void run() {
+
             }
         });
     }
@@ -73,23 +84,26 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> implement
         ArrayList<Object> list = new ArrayList<>();
         list.add(0, position);
         list.add(1, Constant.EDIT_OPTION);
+        list.add(2, item.getId());
         holder.editBTN.setTag(list);
         holder.editBTN.setOnClickListener(this);
         list = new ArrayList<>();
         list.add(0, position);
         list.add(1, Constant.DROP);
+        list.add(2, item.getId());
         holder.dropBTN.setTag(list);
         holder.dropBTN.setOnClickListener(this);
         list = new ArrayList<>();
         list.add(0, position);
         list.add(1, Constant.EXTRA_OPTION);
+        list.add(2, item.getId());
         holder.mView.setTag(list);
         holder.mView.setOnClickListener(this);
-        long count = SQLite.select()
+        List<QuestionDB> queryResult = SQLite.select()
                 .from(QuestionDB.class)
                 .where(QuestionDB_Table.quiz.eq(item.getId()))
-                .count();
-        holder.counterTV.setText(item.getId()+" "+count+" questions");
+                .queryList();
+        holder.counterTV.setText(queryResult.size() + holder.mView.getContext().getString(R.string.questions));
 
     }
 
@@ -103,17 +117,20 @@ public class QuizAdapter extends RecyclerView.Adapter<Quiz.ViewHolder> implement
         List<Object> tag = (List<Object>) v.getTag();
         switch (((String) tag.get(1))) {
             case Constant.DROP:
-                mFlowCursorList.getItem((int) tag.get(0)).delete();
-                this.notifyItemRemoved((int) tag.get(0));
+                QuizDB item = mFlowCursorList.getItem((int) tag.get(0));
+
+                item.delete();
+                mFlowCursorList = new FlowCursorList<>(false, QuizDB.class);
+                adapter.notifyItemRemoved((int) tag.get(0));
                 break;
             case Constant.EDIT_OPTION:
                 Intent intent = new Intent(v.getContext(), EditQuizActivity.class);
-                intent.putExtra(Constant.QUIZ_ID, (int) tag.get(0));
+                intent.putExtra(Constant.QUIZ_ID, (long) tag.get(2));
                 v.getContext().startActivity(intent);
                 break;
             case Constant.EXTRA_OPTION:
                 Intent i = new Intent(v.getContext(), QuizDetailActivity.class);
-                i.putExtra(Constant.QUIZ_ID, (int) tag.get(0));
+                i.putExtra(Constant.QUIZ_ID, (long) tag.get(2));
                 v.getContext().startActivity(i);
                 break;
         }

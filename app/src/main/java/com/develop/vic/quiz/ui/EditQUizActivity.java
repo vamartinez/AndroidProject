@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -55,9 +56,10 @@ public class EditQuizActivity extends BaseActivity {
         ButterKnife.inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
         questionAdapter = new QuestionAdapter();
         Intent intent = getIntent();
-        int quizId = intent.getIntExtra(Constant.QUIZ_ID, -1);
+        long quizId = intent.getLongExtra(Constant.QUIZ_ID, -1L);
         if (quizId != -1) {
             mQuizController.setQuizId(quizId);
             titleTV.setText(mQuizController.getQuizTitle());
@@ -97,7 +99,7 @@ public class EditQuizActivity extends BaseActivity {
     private void saveQuiz() {
         titleTV.requestFocus();
         if (!(questionAdapter.getItemCount() > 0)) {
-            Toast.makeText(getApplicationContext(), "Create the questions after save", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.question_after_save, Toast.LENGTH_SHORT).show();
             return;
         }
         mQuizController.createQuiz(titleTV.getText().toString(), descriptionTV.getText().toString());

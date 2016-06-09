@@ -163,7 +163,7 @@ public class MultipleChoise extends BaseElement {
     }
 
     @Override
-    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position, int quizId) {
+    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position, long quizId) {
         BaseElement.ViewHolder holder = (BaseElement.ViewHolder) originHolder;
         holder.titleTV.setText(questionDB.getName());
         List<AnswerDB> answerDBList = SQLite.select()

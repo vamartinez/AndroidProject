@@ -30,17 +30,18 @@
         </activity>
         <activity
             android:name=".ui.EditQuizActivity"
-            android:label="@string/title_activity_edit_quiz"
-            android:parentActivityName=".ui.BaseActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label=""
+            android:parentActivityName=".ui.QuizListActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.develop.vic.quiz.ui.BaseActivity" />
+                android:value="com.develop.vic.quiz.ui.QuizListActivity" />
         </activity>
         <activity
             android:name=".ui.FormActivity"
             android:label="@string/title_activity_form"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible"/>
     </application>
 </manifest>

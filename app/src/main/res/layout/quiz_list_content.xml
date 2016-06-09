@@ -67,13 +67,6 @@
                 android:gravity="bottom">
 
                 <Button
-                    android:id="@+id/resultBTN"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RESULT" />
-
-                <Button
                     android:id="@+id/editBTN"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"

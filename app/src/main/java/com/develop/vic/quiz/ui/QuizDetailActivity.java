@@ -32,15 +32,15 @@ public class QuizDetailActivity extends BaseActivity {
         }
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
-            arguments.putInt(Constant.QUIZ_ID,
-                    getIntent().getIntExtra(Constant.QUIZ_ID, -1));
+            arguments.putLong(Constant.QUIZ_ID,
+                    getIntent().getLongExtra(Constant.QUIZ_ID, -1));
             QuizDetailFragment fragment = new QuizDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.quiz_detail_container, fragment)
                     .commit();
         }
-        final int quizId = getIntent().getIntExtra(Constant.QUIZ_ID, -1);
+        final long quizId = getIntent().getIntExtra(Constant.QUIZ_ID, -1);
         View fab = findViewById(R.id.responseFAB);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {

@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class OpenText extends BaseElement {
 
+    private static final int DEFAULT_MAX_LENGTH = 50;
     private OpenText.ViewHolder holder;
     public static final int CODE = 1;
 
@@ -110,7 +111,7 @@ public class OpenText extends BaseElement {
 
 
     @Override
-    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position, int quizId) {
+    public void bindResponseHolder(RecyclerView.ViewHolder originHolder, int position, long quizId) {
         BaseElement.ViewHolder holder = (BaseElement.ViewHolder) originHolder;
         holder.titleTV.setText(questionDB.getName());
         List<AnswerDB> answerDBList = SQLite.select()
@@ -128,7 +129,9 @@ public class OpenText extends BaseElement {
     protected void loadAnswerData(View v) {
         ((TextView) v.findViewById(R.id.questionTV)).setText(questionDB.getName());
         InputFilter[] fArray = new InputFilter[1];
-        fArray[0] = new InputFilter.LengthFilter(questionDB.getMaxLenght());
+        int maxLenght = questionDB.getMaxLenght();
+        if (maxLenght == 0) maxLenght = DEFAULT_MAX_LENGTH;
+        fArray[0] = new InputFilter.LengthFilter(maxLenght);
         ((EditText) v.findViewById(R.id.answerET)).setFilters(fArray);
     }
 

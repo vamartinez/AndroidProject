@@ -44,7 +44,6 @@ public class FormActivity extends BaseActivity {
         }
         final ArrayList<BaseElement> elementList = mQuizController.getList();
         for(int i=0;i<elementList.size();i++){
-            Log.e(this.toString(),"add"+i+elementList.get(i).getClass().getName());
             containerLL.addView(elementList.get(i).getAnswerView(getApplicationContext()));
         }
 
@@ -53,7 +52,7 @@ public class FormActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 mQuizController.saveResponse(elementList);
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, R.string.response_complete_message, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

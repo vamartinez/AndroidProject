@@ -96,4 +96,7 @@
     <string name="description">description</string>
     <string name="quiz_update">Quiz update!!</string>
     <string name="title_activity_form">FormActivity</string>
+    <string name="question_after_save">Create the questions after save</string>
+    <string name="response_complete_message">Quiz update, you can change your answer and save again</string>
+    <string name="questions">" questions"</string>
 </resources>
