@@ -7,7 +7,7 @@ android {
         production {
             keyAlias 'test'
             keyPassword 'test123'
-            storeFile file('C:/Users/vic/Documents/Nanodegree/Quiz/key/apikey.jks')
+            storeFile file('/Nanodegree/Quiz/key/apikey.jks')
             storePassword 'test123'
         }
     }
