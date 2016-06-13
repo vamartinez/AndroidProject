@@ -2,27 +2,23 @@ package com.develop.vic.quiz.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
+import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 
 
 import com.develop.vic.quiz.R;
 import com.develop.vic.quiz.database.QuizDB;
-import com.develop.vic.quiz.database.QuizDB_Table;
-import com.develop.vic.quiz.ui.adapter.CustomCursorLoader;
-import com.develop.vic.quiz.ui.adapter.QuizAdapter;
 import com.develop.vic.quiz.ui.adapter.QuizCursorAdapter;
-import com.raizlabs.android.dbflow.structure.provider.ContentUtils;
+import com.raizlabs.android.dbflow.list.FlowCursorList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -37,7 +33,7 @@ import butterknife.InjectView;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class QuizListActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class QuizListActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<List<QuizDB>> {
 
     @InjectView(R.id.quiz_list)
     RecyclerView recyclerView;
@@ -63,32 +59,55 @@ public class QuizListActivity extends BaseActivity implements LoaderManager.Load
                 startActivity(intent);
             }
         });
-
-        adapter = new QuizCursorAdapter(this);
-        //QuizAdapter adapter = new QuizAdapter(this);
-        recyclerView.setAdapter(adapter);
-        getSupportLoaderManager().restartLoader(1, null, this);
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        Log.e(this.toString(),"onCreateLoader");
-        QuizDB quizDB= new QuizDB();
-        //return ContentUtils.query(getContentResolver(), QuizDB.CONTENT_URI, QuizDB.);
-        return new CustomCursorLoader(this,QuizDB.CONTENT_URI,null);
-        //return new CursorLoader(this, QuizDB.CONTENT_URI, null, null, null, QuizDB_Table.description + " DESC");
+    protected void onResume() {
+        super.onResume();
+        getSupportLoaderManager().initLoader(1, null, this);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.e(this.toString(),"onLoaderFinish");
-        if (adapter != null) {
-            adapter.swapCursor(data);
+    public Loader<List<QuizDB>> onCreateLoader(int id, Bundle args) {
+        AsyncLoader asyncLoader = new AsyncLoader(getApplicationContext());
+        asyncLoader.forceLoad();
+        return asyncLoader;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<QuizDB>> loader, List<QuizDB> data) {
+        recyclerView.setAdapter(new QuizCursorAdapter(this, data));
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<QuizDB>> loader) {
+        recyclerView.setAdapter(null);
+    }
+
+
+    public static class AsyncLoader extends AsyncTaskLoader<List<QuizDB>> {
+
+        List<QuizDB> mList;
+
+        public AsyncLoader(Context context) {
+            super(context);
+            mList = new ArrayList<>();
+        }
+
+        @Override
+        public List<QuizDB> loadInBackground() {
+            mList = new ArrayList<QuizDB>();
+            FlowCursorList<QuizDB> flowCursor = new FlowCursorList<>(false, QuizDB.class);
+            for (int i = 0; i < flowCursor.getCount(); i++)
+                mList.add(flowCursor.getItem(i));
+            return mList;
+        }
+
+        @Override
+        public void deliverResult(List<QuizDB> data) {
+            super.deliverResult(data);
         }
     }
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        Log.e(this.toString(),"onLOaderRest");
-    }
 }

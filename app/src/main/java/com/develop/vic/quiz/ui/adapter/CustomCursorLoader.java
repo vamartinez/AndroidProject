@@ -1,14 +1,21 @@
 package com.develop.vic.quiz.ui.adapter;
 
+import android.accounts.Account;
+import android.content.AbstractThreadedSyncAdapter;
+import android.content.ContentProviderClient;
 import android.content.Context;
+import android.content.SyncResult;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.os.CancellationSignal;
 import android.support.v4.os.OperationCanceledException;
 
 import com.develop.vic.quiz.database.QuizDB;
 import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.runtime.TransactionManager;
+import com.raizlabs.android.dbflow.runtime.transaction.process.ProcessModelInfo;
 import com.raizlabs.android.dbflow.sql.language.BaseModelQueriable;
 
 import java.io.FileDescriptor;
