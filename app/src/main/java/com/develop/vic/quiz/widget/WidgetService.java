@@ -5,6 +5,7 @@ package com.develop.vic.quiz.widget;
  */
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViewsService;
 
 public class WidgetService extends RemoteViewsService {

@@ -2,14 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/widget_margin"
-    android:background="#09C" >
-    <!-- ListView to be shown on widget -->
+    android:background="#09CC" >
     <ListView
         android:id="@+id/listViewWidget"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!-- Empty view is show if list items are empty -->
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
@@ -18,5 +15,5 @@
         android:text="Quiz List"
         android:textColor="#ffffff"
         android:textSize="20sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </RelativeLayout>
